@@ -1,0 +1,66 @@
+---
+title       : Introduction à la classification (3)
+subtitle    :  Algorithmes
+author      : Elisabeth Morand-Bénédicte Garnier
+job         : SMS
+
+framework: deckjs
+deckjs:
+  theme: web-2.0
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+
+hitheme     : solarized_light 
+widgets     : [bootstrap, shiny, interactive,mathjax,quiz]           # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+ext_widgets: {rCharts: [libraries/nvd3]}
+---
+
+## Principe
+
+
+On agrège à chaque étape les **2 éléements** les plus proches
+L’idéee est d’agréeger au niveau individuel
+
+Algorithme : On a n éléments à  classer
+
+- On agrège les deux éléments les plus proches (distance minimale /similarité maximale!)
+- il reste n-2 individus et un groupe de 2 individus soit n-1 éléements de 2 types (individus et
+classe)
+- parmi les n-1 éléements restants, on regroupe les deux plus proches
+- etc.
+
+Problème: on a la distance entre 2 individus mais il faut déﬁnir la
+ressemblance entre un groupe de 2 ou plusieurs individus et un individu ou
+celle entre deux groupes d’individus.
+
+
+---
+##Exemple avec la distance euclidienne I
+
+```{r disteuclid1 ,echo=FALSE, tidy=TRUE, warning=FALSE,error=FALSE}
+tabtp <- read.delim("donnees/aveclesmains.txt", dec=",")
+
+xtable(as.matrix(round(dist(tabtp[,c("Longueur","Largeur","Poids")]),2)),type="html")
+```
+
+
+si on applique l’algorithme :
+- Etape 1 : on regroupe A et B on appelle cet ´el´ement {A, B}
+- Il reste 5 éléments C, D , E, F et {A, B}
+  - parmi C D E et F il est facile de trouver comment les regrouper
+  - Mais  C est plus proche de D (2.24) que de {A, B} ?
+  - On considère que la distance entre {A, B} et C est le min de d(A,C) et d(C, B) soit 2.89.
+Donc on reconstruit une matrice de distance
+A;  B    C  D  E
+C  2.89
+D  2.64  2.24
+E  5.02  2.45  3.00
+F  5.76  2.87  4.39  1.80
+- Etape 2 On regroupe E et F
+
+Il reste 4 éléments {A, B},{E, F } , C et D
+
+
+
+

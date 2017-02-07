@@ -1,0 +1,15 @@
+base
+devtools
+rCharts
+googleVis
+slidify
+reshape2
+zoo
+xts
+PerformanceAnalytics
+slidifyLibraries
+shiny
+XML
+knitr
+DT
+xtable

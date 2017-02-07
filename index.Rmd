@@ -1,0 +1,33 @@
+---
+title: "Initiation à la classification"
+output: github_document
+---
+
+# Initiation à la classification
+
+
+
+```{r setup, cache = F, echo = F}
+knitr::knit_hooks$set(document = function(doc){
+  gsub('`` ', '```', doc)
+})
+```
+
+
+
+## A disposition 
+
+- Les slides de la formation
+- le programme du tp
+
+
+
+## Navigation
+
+```{r echo = F, results = 'asis'}
+formation = dir('formation', full = TRUE)
+links = paste0(seq_along(formation), ". ", 
+  "[Presentation ", basename(formation), "]", "(", formation, "/index.html)"
+)
+writeLines(links)
+```

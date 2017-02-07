@@ -1,0 +1,170 @@
+---
+title       : Introduction à la classification
+subtitle    : 
+author      : Elisabeth Morand-Bénédicte Garnier
+job         : SMS
+framework   : io2012      # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+
+hitheme     : zenburn 
+widgets     : [bootstrap, shiny, interactive,mathjax,quiz]           # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+ext_widgets: {rCharts: [libraries/nvd3]}
+---
+
+## Objet d'étude
+
+1. On travaille avec un tableau de donnéees ”classique” ; individus$\times$variables
+Les lignes du tableau correspondent aux individus (enquêtés, ménages,
+villes ...) pour lesquels on dispose de caractéristiques, les variables, qui
+correspondent aux colonnes du tableau
+
+2. On souhaite classer les individus
+
+
+---
+
+## Objectif d'une classification automatique
+
+La classiﬁcation vise à construire des **classes**
+
+Une classe va contenir des objets pris dans un ensemble (population ou
+échantillon). Les objets d’une classe se ressemblent suivant certains
+critères.
+
+Pour classer il faut donc disposer d’objet à classer et de caractéristiques
+sur ces objets permettant d’apprécier s’ils se ressemblent.
+
+Pourquoi réealiser une classiﬁcation :
+ 
+> 
+> - Pour obtenir des sous populations homogènes
+> - Pour avoir une typologie des individus
+
+---
+
+
+
+
+## Using Layouts
+
+### Basic 
+
+1. Open the file `demo/layouts/index.Rmd`.
+2. Modify the `logo` property to point to a logo of your choice.
+3. Run `slidify("index.Rmd")`.
+4. Open `index.html`.
+
+### Intermediate
+
+Modify the default slide layout at `demo/layouts/assets/layouts/slide.html` such that 
+
+1. Every slide has a red line after the title.
+2. 
+
+---&twocol
+
+### Two Column Layout   
+This slide has two columns
+
+*** =left
+
+- point 1
+- point 2
+- point 3
+
+*** =right
+
+- point 1
+- point 2
+- point 3
+
+---
+
+
+## Classement et classification supervisé
+
+plan
+---
+
+## Un peu de jargon
+
+On s’intéresse ici à une classiﬁcation dite non superviséee c’est à dire que
+l’on dispose d’éléements non classés que l’on veut regrouper en classes.
+Il existe des méthodes dites de classiﬁcation supervisée c’est à dire que
+l’on dispose d’´eléments déjà classées (malade/non malade) et que l’on
+souhaite classer un nouvel élément à partir d’autres informations.
+
+
+---
+
+
+ 
+## Slide title
+ 
+> * First bullet point to appear
+ 
+> * Second...
+
+---
+
+## un peu de vocabulaire
+La classiﬁcation ou classiﬁcation automatique est un terme g´en´eralement
+employ´e en fran¸cais. Les anglo-saxons l’utilisent aussi mais pour d´esigner
+des techniques de classement (plutot inf´erentielles, proches de la
+classiﬁcation supervis´ee)
+typologie ou analyse typologique
+clustering terme anglo saxon
+taxinomie
+segmentation est parfois employ´e dans le sens de classiﬁcation automatique
+reconnaissance de forme non supervis´ee
+...
+
+--- &div .masthead
+
+### Slidify
+
+- [Home](#)
+- [About](about.html
+
+---
+## Interactive Chart
+
+
+```{r echo = F, results = 'asis'}
+require(rCharts)
+haireye = as.data.frame(HairEyeColor)
+n1 <- nPlot(Freq ~ Hair, group = 'Eye', type = 'multiBarChart',
+  data = subset(haireye, Sex == 'Male')
+)
+n1$print('chart1')
+```
+
+
+ --- #montreal bg:url(http://goo.gl/cF6W2)
+
+ ## Montreal by Night Time
+
+ --- #dillinger
+
+ <iframe src = 'http://dillinger.io' height='600px'></iframe>
+
+ --- .middle 
+
+ Slidify is Awesome
+
+
+# Deuxieme partie : Distances, Similaritées, Dissimilaritées
+
+
+--- &interactive
+
+## Interactive Console
+
+```{r opts.label = 'interactive', results = 'asis'}
+
+require(googleVis)
+M1 <- gvisMotionChart(Fruits, idvar = 'Fruit', timevar = 'Year')
+print(M1, tag = 'chart')
+```

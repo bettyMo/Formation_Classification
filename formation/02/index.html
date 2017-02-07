@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Introduction à la classification (2)</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Introduction à la classification (2)">
+  <meta name="author" content="Elisabeth Morand-Bénédicte Garnier">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/zenburn.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
+<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
+<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
+<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
+
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Introduction à la classification (2)</h1>
+    <h2></h2>
+    <p>Elisabeth Morand-Bénédicte Garnier<br/>SMS</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h1>Deuxieme partie : Distances, Similaritées, Dissimilaritées</h1>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Donnees</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Pour réaliser les calculs à la main, on travaille sur le petit jeu de donnéees.</p>
+
+<ul class = "build incremental">
+<li>Variables quantitatives</li>
+</ul>
+
+<p>Dans le cas des variables quantitatives, pour les donnéees avec les mains on
+calcule la distance à partir des variables : longueur poids et largeur
+Le premier individu sera alors :
+x1 = (2, 10.3, 6)</p>
+
+<ul>
+<li>Variables qualitatives</li>
+</ul>
+
+<p>Dans le cas des variables qualitatives, on calcule la distance à partir des
+variables : couleurs et région
+Le premier individu sera alors :
+x1 = (jaune, 1)</p>
+</blockquote>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Définition : Distance</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Soit E un ensemble d’objets. Une distance \[ d :  E \times  E \rightarrow R^{+} \]
+vériﬁe les propriétés suivantes</p>
+
+<ul class = "build incremental">
+<li><p>propriété de symétrie :
+\(\forall x_i, x'_i\in E, d(x_i,x'_i)=d(x'_i,x_i)\)</p></li>
+<li><p>propriété de séparation :
+\[d(xi , x'_i)=0 \Leftrightarrow x_i=x'_i\]</p></li>
+<li><p>inégalité triangulaire :
+\[\forall x_i, x'_i, y \in E, d(x_i,x'_i) \leq d(x'_i,y) + d(y,x_i)\]</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Distances ; Dissimilarités</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>distance</li>
+<li>similarité</li>
+<li>dissimilarité obtenue à partir d’une similarité par : 1-similarité</li>
+</ul>
+
+<p>Les dissimilarités peuvent ne pas vériﬁer l’inégalité triangulaire voire la
+propriété de séparation</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h1>Variables quantitatives</h1>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Distance classique</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>distance euclidienne classique</li>
+<li>distance de Manhattan</li>
+<li>distance de Minkowsky</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h3>Distance Euclidienne</h3>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong>Distance Eucliedienne</strong></li>
+</ul>
+
+<p>La distance euclidienne au carré se calcule par 
+\[d^2_{ii'}=\sum_{j=1}^p(x_{ij}-x_{i'j})^2\]</p>
+
+<p>Dans le cas des données avec les mains on calcule la distance euclidienne à partir des variables :
+\alert{longueur poids et  largeur}</p>
+
+<p>La distance entre le premier individu (\(x_1=(2,10.3,6)\)) et le troisième (\(x_3=(4,12,3)\)) individu 
+vaut </p>
+
+<p>\[\sqrt((2-4)^2+(10.3-12)^2+(6-3)^2)=3.986\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Exemple de calcul</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Plus généralement on peut calculer une matrice de distance contenant les
+distances 2 à 2. Cette matrice est symétrique et sa diagonale vaut 0</p>
+
+<pre><code>## % latex table generated in R 3.2.4 by xtable 1.8-2 package
+## % Tue Feb 07 12:19:41 2017
+## \begin{table}[ht]
+## \centering
+## \begin{tabular}{rrrrrrr}
+##   \hline
+##  &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\ 
+##   \hline
+## 1 &amp; 0.00 &amp; 1.49 &amp; 3.99 &amp; 2.84 &amp; 5.70 &amp; 6.77 \\ 
+##   2 &amp; 1.49 &amp; 0.00 &amp; 2.89 &amp; 2.64 &amp; 5.02 &amp; 5.76 \\ 
+##   3 &amp; 3.99 &amp; 2.89 &amp; 0.00 &amp; 2.24 &amp; 2.45 &amp; 2.87 \\ 
+##   4 &amp; 2.84 &amp; 2.64 &amp; 2.24 &amp; 0.00 &amp; 3.00 &amp; 4.39 \\ 
+##   5 &amp; 5.70 &amp; 5.02 &amp; 2.45 &amp; 3.00 &amp; 0.00 &amp; 1.80 \\ 
+##   6 &amp; 6.77 &amp; 5.76 &amp; 2.87 &amp; 4.39 &amp; 1.80 &amp; 0.00 \\ 
+##    \hline
+## \end{tabular}
+## \end{table}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Distance de Manhattan</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Distance de Manhattan</h3>
+
+<p>\(d_{ii'}=\sum_{j=1}^p \|x_{ij}-x_{i'j}\|\)</p>
+
+<h3>Exemple de calcul</h3>
+
+<p>La distance entre le premier individu (\(x_1=(2,10.3,6)\)) et le troisième (\(x_3=(4,12,3)\)) individu 
+vaut </p>
+
+<p>\[(\|2-4\|+\|10.3-12\|+\|6-3\|=6.7\]</p>
+
+<p><strong>Avantage</strong> : pas de carré donc effet des points atypiques moins fort</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h3>Matrice de distance : manhattan</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>##      1   2   3   4   5    6
+## 1  0.0 2.1 6.7 4.3 8.7 11.2
+## 2  2.1 0.0 4.6 4.4 7.4  9.1
+## 3  6.7 4.6 0.0 3.0 4.0  4.5
+## 4  4.3 4.4 3.0 0.0 5.0  7.5
+## 5  8.7 7.4 4.0 5.0 0.0  2.5
+## 6 11.2 9.1 4.5 7.5 2.5  0.0
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h3>Matrice de distance : Minkowsky</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>La distance euclidienne et la distance de Manhattan sont deux cas
+particuliers de la distance de Minkowsky
+\[ d_{ii'} = d(x_i , x_i' ) = \{\sum_i=1^p \alpha_j \|x_{ij}-x_{i'j}\|^\lambda}^{1/\lambda}\]
+
+
+</p>
+
+<ul>
+<li>Distance euclidienne : \(\lambda = 2\), \(\alpha_j  = 1\),    \(\forall j\)</li>
+<li>Distance de Manahttan : \(\lambda = 1\), \(\alpha_j  = 1\),    \(\forall j\)</li>
+<li>Distance euclidienne sur donn´ee centr´ee r´eduite : \(\lambda = 1\), \(\alpha_j  = \frac{1}{s^2_j}\)
+s<em>j=\frac{1}{n}\sum_i=1<sup>n</sup> \alpha_j (x</em>{ij}-\hat x_{j})<sup>2)</sup></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Deuxieme partie : Distances, Similaritées, Dissimilaritées'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Donnees'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Définition : Distance'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Distances ; Dissimilarités'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Variables quantitatives'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Distance classique'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Distance Euclidienne'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Exemple de calcul'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Distance de Manhattan'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Matrice de distance : manhattan'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Matrice de distance : Minkowsky'>
+         12
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+<script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <script src="shared/shiny.js" type="text/javascript"></script>
+  <script src="shared/slider/js/jquery.slider.min.js"></script>
+  <script src="shared/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="shared/slider/css/jquery.slider.min.css"></link>
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
