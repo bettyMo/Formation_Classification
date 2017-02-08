@@ -49,7 +49,7 @@ sur ces objets permettant d’apprécier s’ils se ressemblent.
 
 
 
-
+---
 
 
 ## Classement et classification automatique
@@ -73,13 +73,7 @@ souhaite classer un nouvel élément à partir d’autres informations.
 
 
  
-## Slide title
- 
-> * First bullet point to appear
- 
-> * Second...
 
----
 
 ## un peu de vocabulaire
 La classiﬁcation ou classiﬁcation automatique est un terme généralement

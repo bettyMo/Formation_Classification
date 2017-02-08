@@ -49,7 +49,7 @@ sur ces objets permettant d’apprécier s’ils se ressemblent.
 
 
 
-
+---
 
 
 ## Classement et classification automatique
@@ -73,13 +73,7 @@ souhaite classer un nouvel élément à partir d’autres informations.
 
 
  
-## Slide title
- 
-> * First bullet point to appear
- 
-> * Second...
 
----
 
 ## un peu de vocabulaire
 La classiﬁcation ou classiﬁcation automatique est un terme généralement
@@ -107,17 +101,31 @@ classiﬁcation supervisée)
 
 ## Exemple
 
-<!-- html table generated in R 3.2.4 by xtable 1.8-2 package -->
-<!-- Tue Feb 07 11:25:18 2017 -->
-<table border=1>
-<tr> <th>  </th> <th> Sepal.Length </th> <th> Sepal.Width </th>  </tr>
-  <tr> <td align="right"> 1 </td> <td align="right"> 5.10 </td> <td align="right"> 3.50 </td> </tr>
-  <tr> <td align="right"> 2 </td> <td align="right"> 4.90 </td> <td align="right"> 3.00 </td> </tr>
-  <tr> <td align="right"> 3 </td> <td align="right"> 4.70 </td> <td align="right"> 3.20 </td> </tr>
-  <tr> <td align="right"> 4 </td> <td align="right"> 4.60 </td> <td align="right"> 3.10 </td> </tr>
-  <tr> <td align="right"> 5 </td> <td align="right"> 5.00 </td> <td align="right"> 3.60 </td> </tr>
-  <tr> <td align="right"> 6 </td> <td align="right"> 5.40 </td> <td align="right"> 3.90 </td> </tr>
-   </table>
+
+
+
+
+## Error in file(file, "rt"): cannot open the connection
+% latex table generated in R 3.3.2 by xtable 1.8-2 package
+% Wed Feb 08 09:53:52 2017
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrrrlr}
+  \hline
+ & Nom & Longueur & Poids & Largeur & Couleur & Region \\ 
+  \hline
+1 & A &   2 & 10.30 &   6 & jaune &   1 \\ 
+  2 & B &   2 & 11.40 &   5 & bleu &   1 \\ 
+  3 & C &   4 & 12.00 &   3 & jaune &   2 \\ 
+  4 & D &   4 & 10.00 &   4 & jaune &   1 \\ 
+  5 & E &   6 & 11.00 &   2 & bleu &   2 \\ 
+  6 & F &   6 & 12.50 &   1 & bleu &   2 \\ 
+   \hline
+\end{tabular}
+\caption{Les données utilisées} 
+\label{tabtp}
+\end{table}
+
 
 ---
 

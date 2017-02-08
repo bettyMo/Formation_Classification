@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<title>Introduction à la classification (3)</title>
+	<meta name="description" content="Introduction à la classification (3)">
+	<meta name="author" content="Elisabeth Morand-Bénédicte Garnier">
+	<meta name="generator" content="slidify" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="libraries/frameworks/deckjs/core/deck.core.css">
+	<link rel="stylesheet" href="libraries/frameworks/deckjs/extensions/goto/deck.goto.css">
+<link rel="stylesheet" href="libraries/frameworks/deckjs/extensions/hash/deck.hash.css">
+<link rel="stylesheet" href="libraries/frameworks/deckjs/extensions/menu/deck.menu.css">
+<link rel="stylesheet" href="libraries/frameworks/deckjs/extensions/navigation/deck.navigation.css">
+<link rel="stylesheet" href="libraries/frameworks/deckjs/extensions/scale/deck.scale.css">
+<link rel="stylesheet" href="libraries/frameworks/deckjs/extensions/status/deck.status.css">
+<!-- Style theme. More available in /themes/style/  -->
+	<link rel="stylesheet" href="libraries/frameworks/deckjs/themes/style/web-2.0.css">
+	
+	<!-- Transition theme. More available in /themes/transition/  -->
+	<link rel="stylesheet" href="libraries/frameworks/deckjs/themes/transition/horizontal-slide.css">
+	<script src="libraries/frameworks/deckjs/modernizr.custom.js"></script>
+	
+	<!-- LOAD STYLE SHEETS -->
+	<link rel="stylesheet" href="libraries/highlighters/highlight.js/css/solarized_light.css">
+	
+	  <link rel="stylesheet" href = "libraries/widgets/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href = "libraries/widgets/interactive/css/aceeditor.css">
+<link rel="stylesheet" href = "libraries/widgets/quiz/css/demo.css">
+<link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+
+<body class="deck-container">
+
+  <!-- Begin slides -->
+  <section class="slide " id="slide-1">
+  <h2>Principe</h2>
+  <p>On agrège à chaque étape les <strong>2 éléments</strong> les plus proches
+L’idée est d’agréger au niveau individuel</p>
+
+<p>Algorithme : On a n éléments à  classer</p>
+
+<ul>
+<li>On agrège les deux éléments les plus proches (distance minimale /similarité maximale!)</li>
+</ul>
+
+<ul class = "build incremental">
+<li><p>il reste n-2 individus et un groupe de 2 individus soit n-1 éléments de 2 types (individus et
+classe)</p></li>
+<li><p>parmi les n-1 éléements restants, on regroupe les deux plus proches</p></li>
+<li><p>etc.</p></li>
+</ul>
+
+<p>Problème:
+ on a la distance entre 2 individus mais il faut déﬁnir 
+la ressemblance entre un groupe d&#39; individus et un individu 
+ou celle entre deux groupes d’individus.</p>
+</blockquote>
+
+</section>
+<section class="slide " id="slide-2">
+  <h2>Exemple avec la distance euclidienne I</h2>
+  <pre><code>     1        2        3        4        5        6
+</code></pre>
+
+<p>1 0.000000 1.486607 3.986226 2.844293 5.700000 6.770524
+2 1.486607 0.000000 2.891366 2.638181 5.015974 5.762812
+3 3.986226 2.891366 0.000000 2.236068 2.449490 2.872281
+4 2.844293 2.638181 2.236068 0.000000 3.000000 4.387482
+5 5.700000 5.015974 2.449490 3.000000 0.000000 1.802776
+6 6.770524 5.762812 2.872281 4.387482 1.802776 0.000000</p>
+
+<p>si on applique l’algorithme :</p>
+
+<ul>
+<li>Etape 1 : on regroupe A et B;  on appelle cet élément {A, B}</li>
+<li>Il reste 5 éléments C, D , E, F et {A, B}</li>
+</ul>
+
+</section>
+<section class="slide " id="slide-3">
+  <h2>Exemple avec la distance euclidienne II</h2>
+  <ul>
+<li>Parmi C D E et F il est facile de trouver comment les regrouper</li>
+<li>Mais  C est plus proche de D (2.24) que de {A, B} ?</li>
+<li>On considère que la distance entre {A, B} et C est le min de d(A,C) et d(C, B) soit 2.89.</li>
+</ul>
+
+<p>Donc on reconstruit une matrice de distance</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>A;B</th>
+<th align="center">C</th>
+<th align="right">D</th>
+<th align="center">E</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>C</td>
+<td>2.89</td>
+<td align="center"></td>
+<td align="right"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>D</td>
+<td>2.64</td>
+<td align="center">2.24</td>
+<td align="right"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>E</td>
+<td>5.02</td>
+<td align="center">2.45</td>
+<td align="right">3.00</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>F</td>
+<td>5.76</td>
+<td align="center">2.87</td>
+<td align="right">4.39</td>
+<td align="center">1.80</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Etape 2</strong> On regroupe E et F</li>
+</ul>
+
+<p>Il reste 4 éléments {A, B},{E, F } , C et D</p>
+
+</section>
+<section class="slide " id="slide-4">
+  <h2>Exemple avec la distance euclidienne III</h2>
+  <ul>
+<li><p>pour la distance entre \(\{A,B\}\),\(\{E,F\}\) on cherche le minimum de la distance entre 1 point du premier groupe et un point du \(2^e\) groupe soit min (d(A,E), d(A,F),d(B,E),d(B,F)) ici cela vaut 5.02. On doit alors reconstruire une matrice de distance </p>
+
+<p>A; B    C         D</p></li>
+</ul>
+
+<p>C     2.89<br>
+D     2.64    2.24<br>
+E,F 5.02      2.45    3.00</p>
+
+<ul>
+<li><strong>Etape 3</strong> On regroupe  C et D</li>
+</ul>
+
+</section>
+<section class="slide " id="slide-5">
+  <h2>Exemple avec la distance euclidienne IV</h2>
+  <ul>
+<li> il reste 3 éléments {A;B} et {E;F} et {C;D}</li>
+<li><p>on reconstruit une matrice de distance</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>A; B</th>
+<th>C;D</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>C;D</td>
+<td>2.64</td>
+<td></td>
+</tr>
+<tr>
+<td>E,F</td>
+<td>5.02</td>
+<td>2.45</td>
+</tr>
+</tbody></table></li>
+<li><p><strong>Etape 4</strong> : on regroupe C; D et E;F </p></li>
+<li><p>il reste 2 élements {A,B} {C,D,E,F}</p></li>
+</ul>
+
+</section>
+<section class="slide " id="slide-6">
+  <h2>Critère du saut minimal</h2>
+  <p>\[D_{diam}(h,h')=inf\{d(i,i'); i \in h i' \in h'\}\]</p>
+
+<p><strong>single linkage</strong></p>
+
+</section>
+<section class="slide " id="slide-7">
+  <h2>Resultats</h2>
+  <p>assets/fig/exempledendrogramme -1.pdf</p>
+
+</section>
+<section class="slide " id="slide-8">
+  <h2>Terminologie</h2>
+  <p>On obtient un arbre des partitions  appelé dendrogramme</p>
+
+<ul>
+<li>Individus initiaux = éléments terminaux de l’arbre</li>
+<li>N\oe uds = Classes issues de regroupements.</li>
+<li>Ainé-Benjamin = Deux éléments constitutifs d’un N\oe uds</li>
+</ul>
+
+<p>Coupure de l’arbre : on obtient une partition.</p>
+
+</section>
+<section class="slide " id="slide-9">
+  
+  <p>##Variantes</p>
+
+<blockquote>
+<p>Critère du diamètre 
+\[D_{diam}(h,h')=sup\{d(i,i'); i \in h i' \in h'\}\]</p>
+</blockquote>
+
+<p><strong>Complete linkage</strong> ; ici c&#39;est la plus grande distance qui est utilisée</p>
+
+<p>En pratique, ce critère n&#39;est pas employé</p>
+
+<blockquote>
+<p>Critère de la moyenne 
+Point \(x_{i}\) de masse \(m_{i}\) et point \(x_{i'}\) de masse \(m_{i'}\)</p>
+</blockquote>
+
+<p>\[D_{moy}(h,h')=\frac{1}{m_h m_{h'}}\sum_{i\in h, i' \in h'} \{m_i m_{i'}d(i,i')\} \]</p>
+
+<p><strong>average linkage</strong></p>
+
+</section>
+<section class="slide " id="slide-10">
+  <h2>Le critère de Ward</h2>
+  <blockquote>
+<p>Ward, perte d&#39;inertie minimale}
+\[\Delta I_{min}= \frac{m_h m_{h'}} {m_h+m_{h'}} d^2(g_h,g_{h'})\]</p>
+</blockquote>
+
+<ul>
+<li><p>d distance euclidienne</p></li>
+<li><p>g centre de gravité</p></li>
+</ul>
+
+<p>La partition obtenue à une étape n par rapport à l&#39;étape n-1 consiste à regrouper deux classes telles que l&#39;inertie inter classe soit maximum (que la classes soient très différentes entre elles).</p>
+
+</section>
+<section class="slide " id="slide-11">
+  <h2>Limites</h2>
+  <p>assets/fig/inconvenientsward-1.pdfassets/fig/inconvenientsward-2.pdf</p>
+
+</section>
+<section class="slide " id="slide-12">
+  <h2>Avantages/inconvénients</h2>
+  <h3>Avantages</h3>
+
+<ol>
+<li>Flexibilité sur le niveau de finesse de la classification</li>
+<li>Tous types de distance et de similarité peuvent être utilisés</li>
+</ol>
+
+<h3>Inconvénient</h3>
+
+<ol>
+<li>Choix de la partition (coupure de l&#39;arbre)</li>
+<li>La partition à une étape dépend de celle de l&#39;étape précédente</li>
+<li>Tient peu compte des individus atypiques, classe toujours de même forme. Méthode peu adapté à l&#39;analyse spatiale</li>
+</ol>
+
+</section>
+<section class="slide " id="slide-13">
+  <h2>Classification non Hierarchique</h2>
+  <ol>
+<li>kmeans</li>
+<li>k-medoids</li>
+</ol>
+
+</section>
+<section class="slide " id="slide-14">
+  <h2>Introduction</h2>
+  <p>Dans le cas des méthodes hierarchiques  on a vu que :</p>
+
+<ol>
+<li> la partition en k classes n&#39;est pas optimale</li>
+<li>une fois regroupé 2 éléments on ne revient pas en arrière</li>
+</ol>
+
+<p>Une solution serait de réaliser toutes les partitions possibles, ensuite on choisi un critère de qualité et on prend la meilleur au sens de ce critère.</p>
+
+<p>Le problème c&#39;est que le nombre de partition possible peut devenir très vite gigantesque.</p>
+
+</section>
+<section class="slide " id="slide-15">
+  <h2>Classification non hierachique ; partitionnement</h2>
+  <p>L&#39;objectif est d&#39;obtenir la partition optimale pour un nombre de classes fixé.</p>
+
+<p>Dans ces algorithmes on réaffecte progressivement les individus dans des classes afin de les améliorer.</p>
+
+<p>On distingue deux types d&#39;algorithme  de partitionnement par optimisation itérative :</p>
+
+<ol>
+<li>les méthodes k-moyennes</li>
+<li>les méthodes k-représentant (k-medoids)</li>
+</ol>
+
+</section>
+<section class="slide " id="slide-16">
+  <h2>kmeans : Principe</h2>
+  <ol>
+<li>Inititaliser en prenant k elements au hasard ; k premiers centres de classes</li>
+<li>Affecter chaque élement à une classe ; celle du centre dont il est le plus proche</li>
+<li>Recalculer les centres de ces classes nouvellement constituées ; on représente une classe par son centre. Le centre de la classe n&#39;est généralement pas un des points à classer
+4 .On répète 2 et 3 jusqu&#39;à stabilisation des centres</li>
+</ol>
+
+<p>Généralement, on emploit la distance euclidienne.</p>
+
+<p>Les algorithmes varient fonction : du choix des centres de départ, le calcul des dissimilarités entre objets,le calcul des moyennes des classes et la prise en compte des données catégorielles ou mixtes.</p>
+
+<p>Dans les logiciels on trouve : la méthode des centres mobiles Forgy(1965) , k-means (Mc Queen, 1967) et les nuées dynamiques(Diday,1971)</p>
+
+</section>
+<section class="slide " id="slide-17">
+  <h2>Centre mobiles ; nuées dynamiques</h2>
+  <ul>
+<li><p>Centres mobiles : le centre des classes  est le barycentre calculé à chaque fin d&#39;afectation de tous les individus </p></li>
+<li><p>k-means = les barycentres des classes ne sont 
+pas recalculés à la fin d&#39;une étape mais chaque fois que l&#39;on affecte un individu à une classe. L’algorithme est ainsi plus
+rapide, mais l&#39;ordre d&#39;apparition des individus dans le fichier
+n&#39;est pas neutre. Il n&#39;est pas rare d&#39;adjoindre plusieurs départ à l&#39;algorithme et plusieurs changement d&#39;ordre du fichier</p></li>
+<li><p>nuées dynamiques : Au lieu de prendre un seul représentant de la classe,
+on utilise un noyau de points constitués
+d’éléments représentatifs de la classe. Cela permet de corriger
+l’influence d’éventuelles valeurs extrêmes sur le calcul du barycentre.</p></li>
+</ul>
+
+</section>
+<section class="slide " id="slide-18">
+  <h2>k-medoids - Exemple de méthode : PAM</h2>
+  <p>On choisi un représentant par classe. Ce représentant est censé être le plus au centre de la classe.</p>
+
+<p>L&#39;algorithme PAM est le suivant : à partir d&#39;un ensemble de k représentants (\(M_1, M_2...M_K\))
+choisis parmi les n éléments à classer</p>
+
+<ol>
+<li> Sélection de un representant \(M_t\) et un objet à classer \(O_t\)</li>
+<li> Calculer la qualité de la nouvelle partition si on inverse \(M_t\) et \(O_t\)</li>
+<li> Echanger  \(M_t\) et$ O_t$ si la partition est meilleure</li>
+<li> Retourner en 1 jusqu&#39;à ce que la partition soit stable</li>
+</ol>
+
+<p>Ce type d&#39;opération ne peut être réalisé que pour des petits échantillons</p>
+
+<hr>
+
+<h2>PAM sur le petit jeu de données</h2>
+
+<pre><code>     1        2        3        4        5
+</code></pre>
+
+<p>2 1.486607<br>
+3 3.986226 2.891366<br>
+4 2.844293 2.638181 2.236068<br>
+5 5.700000 5.015974 2.449490 3.000000<br>
+6 6.770524 5.762812 2.872281 4.387482 1.802776</p>
+
+<p>En théorie,on prend C et D pour lequels la somme des distances au carré aux autres points sont les plus basses</p>
+
+<p>\[(3.99^2+2.89^2+2.24^2+2.45^2+2.87^2)\]</p>
+
+<hr>
+
+<h2>PAM sur le petit jeu de données II</h2>
+
+<p>Pour l&#39;exemple on prend B et D : </p>
+
+<ul>
+<li>B est le premier représentant </li>
+<li>D le deuxième</li>
+</ul>
+
+<p>\(C_1^2=\{B*,A\}\)
+\(C_2^2=\{D*,C,E,F\}\)</p>
+
+<p>Ici \[Q=\sum_{i\in C_1^2} d^2(i,R_1)+\sum_{i\in C_2^2} d^2(i,R_2)=2.22+33.29=35.5097\]</p>
+
+<p>On échange un representant , le B, par un non représentant pris au hasard, le C.</p>
+
+<p>\(C_1^1=\{C*,E,F\}\)
+  \(C_2^1=\{D*,A,B\}\)</p>
+
+<p>Qualité de la partition \[Q(P)=\sum_{r=1}^k\sum_{i\in C_r} d^2(i,R_r)\]</p>
+
+<p>avec \(R_r\) le représentant de la classe r.</p>
+
+<p>Ici \[Q=\sum_{i\in C_1^1} d^2(i,R_1)+\sum_{i\in C_2^1} d^2(i,R_2)=11.02+15.0352=26.0552\]</p>
+
+<p>On améliore. On prend cette nouvelle partition et on recommence.</p>
+
+<hr>
+
+<h2>Classification floue</h2>
+
+<p>En classification classique(nette), un individu appartient à une et une seule classe. Il est donc parfois attribué à une classe alors que la différence avec une autre est infime</p>
+
+<h2>Une solution est d&#39;estimer un niveau d&#39;appartenance à chaque classe au cours de la construction de la typologie.</h2>
+
+</section>
+</body>
+  <!-- deck.navigation snippet -->
+  <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+  <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+  
+  <!-- deck.status snippet -->
+  <p class="deck-status">
+  <span class="deck-status-current"></span>
+    /
+  <span class="deck-status-total"></span>
+  </p>
+  
+  <!-- deck.goto snippet -->
+  <form action="." method="get" class="goto-form">
+  	<label for="goto-slide">Go to slide:</label>
+  	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+  	<datalist id="goto-datalist"></datalist>
+  	<input type="submit" value="Go">
+  </form>
+  
+  <!-- deck.hash snippet -->
+  <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+  
+  
+  <!-- Grab CDN jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/frameworks/deckjs/jquery-1.7.min.js"><\/script>')</script>
+  
+  <!-- Add Slide Class to Build Elements -->
+  <script type='text/javascript'>
+  $('ol.build li').addClass('slide')
+  $('ul.build li').addClass('slide')
+  </script>
+  
+  <!-- Deck Core and extensions -->
+  <script src="libraries/frameworks/deckjs/core/deck.core.js"></script>
+  <script src="libraries/frameworks/deckjs/extensions/goto/deck.goto.js"></script>
+<script src="libraries/frameworks/deckjs/extensions/hash/deck.hash.js"></script>
+<script src="libraries/frameworks/deckjs/extensions/menu/deck.menu.js"></script>
+<script src="libraries/frameworks/deckjs/extensions/navigation/deck.navigation.js"></script>
+<script src="libraries/frameworks/deckjs/extensions/scale/deck.scale.js"></script>
+<script src="libraries/frameworks/deckjs/extensions/status/deck.status.js"></script>
+<!-- Initialize the deck -->
+  <script>
+  $(function() {
+  	$.deck('.slide');
+  });
+  </script>  <script>  
+$(function (){ 
+  $("#example").popover(); 
+  $("[rel='tooltip']").tooltip(); 
+});  
+</script>  
+<script src="shared/shiny.js" type="text/javascript"></script>
+<script src="shared/slider/js/jquery.slider.min.js"></script>
+<script src="shared/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="shared/slider/css/jquery.slider.min.css"></link>
+
+<!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script> -->
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>

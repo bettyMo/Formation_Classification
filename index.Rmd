@@ -1,5 +1,5 @@
 ---
-title       : Initiation à la classification
+title       : Initiation classification
 author      : Moi
 framework   : minimal
 hitheme     : solarized_light
@@ -8,10 +8,8 @@ github      : {user: bettyMo, repo: formation_classification, branch: master}
 ---
 
 
-
-
-
 # Initiation à la classification
+
 
 
 
@@ -20,6 +18,7 @@ knitr::knit_hooks$set(document = function(doc){
   gsub('`` ', '```', doc)
 })
 ```
+
 
 
 
@@ -39,3 +38,6 @@ links = paste0(seq_along(formation), ". ",
 )
 writeLines(links)
 ```
+
+
+
