@@ -5,3 +5,10 @@ proxy
 gganimate
 ade4
 ggplot2
+cluster
+devtools
+rCharts
+googleVis
+reshape2
+zoo
+xts

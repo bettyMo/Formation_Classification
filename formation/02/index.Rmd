@@ -140,9 +140,9 @@ $$(\|2-4\|+\|10.3-12\|+\|6-3\|=6.7$$
 
 ## Matrice de distance : manhattan
 
-```{r distancemanhattan1 ,echo=FALSE, warning=FALSE,error=FALSE}
+```{r distancemanhattan1 ,echo=FALSE, warning=FALSE,error=FALSE,results="asis"}
 
-as.matrix(round(dist(tabtp[,c("Longueur","Largeur","Poids")],method="manhattan"),2),type="html")
+as.matrix(round(dist(tabtp[,c("Longueur","Largeur","Poids")],method="manhattan"),2))
 ```
 
 
